@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "resolveJsonModule": true,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "allowJs": true,
+        "noEmit": true,
+        "moduleResolution": "node",
+        "module": "CommonJS",
+        "target": "es6",
+        "importHelpers": true,
+        "outDir": "lib",
+        "baseUrl": "src",     
+        "sourceMap": true,
+        "noImplicitAny": false
+    },
+    "include": ["src"],
+    "exclude": [
+        "node_modules",
+        "tests",
+        "examples",
+        "lib",
+        "**/__tests__/*"
+      ],
+      
+}
