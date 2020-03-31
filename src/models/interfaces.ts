@@ -1,11 +1,9 @@
 import { Request } from 'express';
 
 export interface IReceivedValue {
-    content:{
-        receivedtext: string[];
-        reggex: string | RegExp[];
-        replacement: string[];
-    }
+    receivedText: string;
+    reggex: string | RegExp;
+    replacement: string;
 }
 export interface IResponseValue{
     newVal: string|number;

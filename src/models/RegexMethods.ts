@@ -23,7 +23,6 @@ export default class RegexMethods{
         const isNumberReg = /^[0-9]+$/;
 
         let newReg = reg;
-        console.log(typeof value, typeof replacement);
         if(!reg.endsWith('/')){
             if(helperRegex.test(reg) === false)
               newReg = newReg + "/g";
