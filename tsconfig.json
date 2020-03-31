@@ -5,7 +5,7 @@
         "emitDecoratorMetadata": true,
         "esModuleInterop": true,
         "allowJs": true,
-        "noEmit": true,
+        "noEmit": false,
         "moduleResolution": "node",
         "module": "CommonJS",
         "target": "es6",
