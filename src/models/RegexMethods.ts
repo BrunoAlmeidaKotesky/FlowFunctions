@@ -1,3 +1,4 @@
+import { type } from 'os';
 
 export default class RegexMethods{
 
@@ -53,8 +54,12 @@ export default class RegexMethods{
         }
         if(!reg.startsWith('/'))
             newReg = "/" + newReg;
-            
-        let transformedReg = this.regexParser(reg);
+        if(reg.endsWith("/"))
+            newReg = newReg + "g";
+            console.log(newReg);
+
+        let transformedReg = this.regexParser(newReg);
+        
         let matches = text.matchAll(transformedReg);
         let allMatches = Array.from(matches, m => m[0]);
         const isNumber = allMatches.every(i =>  isNumberReg.test(i)===true);
