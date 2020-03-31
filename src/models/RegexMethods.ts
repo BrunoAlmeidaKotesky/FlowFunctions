@@ -1,7 +1,7 @@
 
 export default class RegexMethods{
 
-    public regexParser(input:string): RegExp {
+    private regexParser(input:string): RegExp {
 
         // Validate input
         if (typeof input !== "string") 
@@ -28,13 +28,43 @@ export default class RegexMethods{
               newReg = newReg + "/g";
         }
         if(!reg.startsWith('/'))
-        newReg = "/" + newReg;
+            newReg = "/" + newReg;
              
         let rebuildReg = this.regexParser(newReg);
         let newVal:string = (value as string).replace(rebuildReg, (replacement as string));
         if(isNumberReg.test(newVal)===true) 
          return Number(newVal);
         else return newVal;
+    }
+
+    public regexMatchAll = (text: string, reg: string) => {
+        const helperRegex = /\/[yisgum]+$/g;
+        const isNumberReg = /^[0-9]+$/;
+        const isGlobalFlag = /\/[g]+$/;
+        let newReg = reg;
+
+        if(!reg.endsWith('/')){
+            if(helperRegex.test(newReg) === false)
+              newReg = newReg + "/g";
+            else {
+                if(isGlobalFlag.test(newReg) === false)
+                  newReg.replace(helperRegex, "/g");
+            }
+        }
+        if(!reg.startsWith('/'))
+            newReg = "/" + newReg;
+            
+        let transformedReg = this.regexParser(reg);
+        let matches = text.matchAll(transformedReg);
+        let allMatches = Array.from(matches, m => m[0]);
+        const isNumber = allMatches.every(i =>  isNumberReg.test(i)===true);
+        if(isNumber){
+            const numbersMatch = allMatches.map(n => parseInt(n));
+            return numbersMatch;
+        }
+        else
+            return allMatches;
+        
     }
 }
 

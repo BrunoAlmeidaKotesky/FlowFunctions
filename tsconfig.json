@@ -13,7 +13,8 @@
         "outDir": "lib",
         "baseUrl": "src",     
         "sourceMap": true,
-        "noImplicitAny": false
+        "noImplicitAny": false,
+        "lib": ["ES2020", "ESNext"]
     },
     "include": ["src"],
     "exclude": [
