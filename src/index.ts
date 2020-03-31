@@ -7,6 +7,7 @@ import os from 'os' ;
 
 
 const app = express();
+const PORT = process.env.PORT || 5544;
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(xmlparser());
@@ -14,4 +15,4 @@ app.use(express.json());
 app.use(cors())
 app.use(routes);
 
-app.listen(5544, 'localhost', (err) => err ? console.log(err) : console.log("Servidor escutando em http://localhost:5544"))
+app.listen(PORT, ()=> console.log("listening on" + PORT));
