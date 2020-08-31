@@ -1,0 +1,63 @@
+swagger: '2.0'
+info: {title: FlowFunctions, description: '', version: '1.0'}
+host: flowfunctions.herokuapp.com
+basePath: /
+schemes: [https]
+produces: [application/json]
+paths:
+  /strings/replaceAll: {}
+  /strings/test: {}
+  /regex/replace/:
+    post:
+      responses:
+        default:
+          description: New Value
+          schema: {type: string, description: New Value from the regex replacer, title: New
+              Value}
+      summary: Replace by Regex
+      description: Tentativa de usar json
+      operationId: RepalceByJson
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            receivedText: {type: string, description: receivedText, title: Texto base}
+            regex: {type: string, description: regex, title: Expressão regular}
+            replacement: {type: string, description: replacement, title: Trocar por}
+          required: [receivedText, regex, replacement]
+  /regex/matchall:
+    post:
+      responses:
+        default:
+          description: default
+          schema: {}
+      summary: Match All
+      description: Match all regex groups from a string an returns an array. If all
+        the elements from the string is a number, returns an array of numbers
+      operationId: MatchAll
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            receivedText: {type: string, description: receivedText, title: Text}
+            regex: {type: string, description: regex, title: RegExp}
+          required: [receivedText, regex]
+definitions:
+  content:
+    type: object
+    properties:
+      receivedText: {type: string, description: Texto base, title: Texto}
+      regex: {type: string, title: RegExp, description: Expressão regular de busca
+          (Com ou sem / /)}
+      replacement: {type: string, title: Substituir-por, description: Texto de substituição}
+parameters: {}
+responses: {}
+securityDefinitions: {}
+security: []
+tags: []
