@@ -1,18 +1,23 @@
-import express from 'express';
+import express, {Express} from 'express';
 import routes from './routes/routes';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import xmlparser from 'express-xml-bodyparser';
-import os from 'os' ;
 
+class MainServices {
+    private app: Express;
+    protected PORT = process.env.PORT || 5544;
+    constructor(){
+        this.app = express();
+        this.app.use(bodyParser.urlencoded({ extended: false }))
+        this.app.use(bodyParser.json())
+        this.app.use(express.json());
+        this.app.use(cors())
+        this.app.use(routes);
+    }
 
-const app = express();
-const PORT = process.env.PORT || 5544;
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-app.use(xmlparser());
-app.use(express.json());
-app.use(cors())
-app.use(routes);
-
-app.listen(PORT, ()=> console.log("listening on" + PORT));
+    public init(){
+        this.app.listen(this.PORT, ()=> console.log("Server listening on " + this.PORT));
+    }
+}
+const app = new MainServices();
+app.init();

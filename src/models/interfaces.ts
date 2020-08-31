@@ -1,12 +1,14 @@
 import { Request } from 'express';
 
+export interface IMetaResponse <T>{
+    meta?: Partial<T>;
+    error?: string;
+    info?: string;
+}
 export interface IReceivedValue {
     receivedText: string;
-    reggex: string | RegExp;
+    regex: string | RegExp;
     replacement: string;
-}
-export interface IResponseValue{
-    newVal: string|number;
 }
 export interface IRequest <T> extends Request{
     body: T
