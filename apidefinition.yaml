@@ -48,6 +48,27 @@ paths:
             receivedText: {type: string, description: receivedText, title: Text}
             regex: {type: string, description: regex, title: RegExp}
           required: [receivedText, regex]
+  /regex/test:
+    post:
+      responses:
+        default:
+          description: Test if an regex is valid
+          schema: {type: boolean, description: Boolean value telling if test is true of false, title: Test}
+      summary: Test Regex
+      description: Text an regular expression
+      operationId: TestRegex
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            text: {type: string, description: text, title: Text}
+            regex: {type: string, description: regex, title: RegExp}
+          required: [text, regex]
+    
+      deprecated: false
 definitions:
   content:
     type: object

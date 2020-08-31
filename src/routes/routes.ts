@@ -4,14 +4,14 @@ import express, {Response} from 'express';
 import RegexMethods from '../models/RegexMethods';
 const routes = express.Router();
 
+const regexer = new RegexMethods();
 routes.post('/regex/replace', (req:IRequest<IReceivedValue>, res:Response<IMetaResponse<any>|string|number>)=>{
     const {receivedText, regex, replacement} = req.body;
-    let replacer = new RegexMethods();
     if(!receivedText || !regex|| !replacement){
         res.status(406);
         return res.json({error: "You should specify an value for all the paramnters"})
     }
-    let newVal = replacer.replaceByRegex(receivedText, (regex as string), replacement);
+    let newVal = regexer.replaceByRegex(receivedText, (regex as string), replacement);
     return res.json(newVal);
 });
 
@@ -21,9 +21,15 @@ routes.post('/regex/matchall', (req:IRequest<MatchAll>, res:Response<{values?: s
         res.status(406);
         return res.json({error: "You should specify an value for all the paramnters"})
     }
-    let reg = new RegexMethods();
-    let values = reg.regexMatchAll(receivedText, (regex as string));
+    let values = regexer.regexMatchAll(receivedText, (regex as string));
     return res.json({values});
+});
+
+routes.post('/regex/test', (req: IRequest<{text: string, regex: string}>, res) =>{
+    if(req?.body?.text && req?.body?.regex){
+        return res.json(regexer.regexTest(req.body.text, req.body.regex));
+    }
+    else return res.json({error: "You should specify an text string to be evaluated"});
 });
 
 export default routes;

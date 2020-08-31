@@ -71,6 +71,21 @@ export default class RegexMethods{
             return allMatches;
         
     }
+
+    public regexTest(text: string, reg: string):boolean {
+        const helperRegex = /\/[yisgum]+$/g;
+        const isNumberReg = /^[0-9]+$/;
+
+        let newReg = reg;
+        if(!reg.endsWith('/')){
+            if(helperRegex.test(reg) === false)
+              newReg = newReg + "/g";
+        }
+        if(!reg.startsWith('/'))
+            newReg = "/" + newReg;
+        let rebuildReg = this.regexParser(newReg);
+        return rebuildReg.test(text);
+    }
 }
 
  
