@@ -5,7 +5,7 @@ import cors from 'cors';
 
 class MainServices {
     private app: Express;
-    protected PORT = process.env.PORT || 5544;
+    protected PORT = process.env.PORT || 5566;
     constructor(){
         this.app = express();
         this.app.use(bodyParser.urlencoded({ extended: false }))

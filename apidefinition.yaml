@@ -33,7 +33,12 @@ paths:
       responses:
         default:
           description: default
-          schema: {}
+          schema: 
+            type: object 
+            description: Values from match all
+            title: Values
+            properties: 
+              values: {type: array}
       summary: Match All
       description: Match all regex groups from a string an returns an array. If all
         the elements from the string is a number, returns an array of numbers
@@ -48,6 +53,29 @@ paths:
             receivedText: {type: string, description: receivedText, title: Text}
             regex: {type: string, description: regex, title: RegExp}
           required: [receivedText, regex]
+  /arr/excludeMatch:
+    post:
+      responses:
+        default:
+          description: default
+          schema: 
+            type: array 
+            description: The excluded match
+            title: Exclude Matches
+      summary: Exclude Match from Array
+      description: Creates a new array of the values from A array that doesnt exist on array B, it can be either an array of primitive values or an array of objects, if it's an array of objects, matchKey should be specified
+      operationId: MatchAll
+      parameters:
+      - name: body
+        in: body
+        required: true
+        schema:
+          type: object
+          properties:
+            arr1: {type: array, description: First Array to be compared, title: First Array}
+            arr2: {type: array, description: Second array to take the values from, title: Second Array}
+            matchKey: {type: string, description: "If the array is an array of objects, the key of the object to be compared in two arrays", title: Match Key}
+          required: [arr1, arr2]
   /regex/test:
     post:
       responses:
