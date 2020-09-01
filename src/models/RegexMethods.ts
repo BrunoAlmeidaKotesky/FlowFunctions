@@ -19,7 +19,7 @@ export default class RegexMethods{
         return new RegExp(matches[2], matches[3]);
     } 
 
-    public replaceByRegex = (value: string|number, reg: string, replacement: string|number):string|number => { 
+    public replaceByRegex(value: string|number, reg: string, replacement: string|number):string|number { 
         const helperRegex = /\/[yisgum]+$/g;
         const isNumberReg = /^[0-9]+$/;
 
@@ -38,7 +38,7 @@ export default class RegexMethods{
         else return newVal;
     }
 
-    public regexMatchAll = (text: string, reg: string) => {
+    public regexMatchAll(text: string, reg: string) {
         const helperRegex = /\/[yisgum]+$/g;
         const isNumberReg = /^[0-9]+$/;
         const isGlobalFlag = /\/[g]+$/;
@@ -56,7 +56,6 @@ export default class RegexMethods{
             newReg = "/" + newReg;
         if(reg.endsWith("/"))
             newReg = newReg + "g";
-            console.log(newReg);
 
         let transformedReg = this.regexParser(newReg);
         
@@ -67,8 +66,7 @@ export default class RegexMethods{
             const numbersMatch = allMatches.map(n => parseInt(n));
             return numbersMatch;
         }
-        else
-            return allMatches;
+        else return allMatches;
         
     }
 
@@ -87,5 +85,3 @@ export default class RegexMethods{
         return rebuildReg.test(text);
     }
 }
-
- 
